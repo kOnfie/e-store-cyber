@@ -49,16 +49,16 @@ export const HeaderDrawer = ({
         <div className={styles.drawerIcons}>
           <Link href="#" className={styles.drawerIconButton} onClick={onClose}>
             <Icon name="user" width={32} height={32} />
-            <span>Профіль</span>
+            <span>Profile</span>
           </Link>
           <Link href="/wishlist" className={styles.drawerIconButton} onClick={onClose}>
             <Icon name="heart" width={32} height={32} />
-            <span>Збережені</span>
+            <span>Saved</span>
             {wishlistCount > 0 && <span className={styles.badge}>{wishlistCount}</span>}
           </Link>
           <Link href="/cart" className={styles.drawerIconButton} onClick={onClose}>
             <Icon name="cart" width={32} height={32} />
-            <span>Корзина</span>
+            <span>Cart</span>
             {cartCount > 0 && <span className={styles.badge}>{cartCount}</span>}
           </Link>
         </div>
