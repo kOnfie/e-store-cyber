@@ -1,0 +1,32 @@
+{
+  "name": "e-store",
+  "version": "1.0.0",
+  "description": "E-commerce store MVP with Next.js 14+, TypeScript, TanStack Query, and Zustand",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write ."
+  },
+  "keywords": ["e-commerce", "nextjs", "typescript", "react"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.12",
+    "axios": "^1.13.2",
+    "next": "^16.0.7",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sass": "^1.94.2",
+    "zustand": "^5.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.7",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3"
+  }
+}
