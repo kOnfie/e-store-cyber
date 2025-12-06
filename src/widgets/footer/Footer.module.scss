@@ -1,0 +1,148 @@
+.footer {
+  background: #000000;
+  color: #ffffff;
+  padding: 104px 0;
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 48px 0;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 113px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+
+  @media (max-width: 1024px) {
+    gap: 60px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 32px;
+  }
+}
+
+.logoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.71em;
+  color: #cfcfcf;
+  margin: 0;
+  max-width: 384px;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  width: 623px;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 24px;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 295.5px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.sectionTitle {
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.footerLink {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 2.29em;
+  color: #cfcfcf;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  &:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  width: 173px;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #cfcfcf;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  &:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+}

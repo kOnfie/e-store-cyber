@@ -10,10 +10,12 @@ export const HeaderDrawer = ({
   open,
   closing,
   onClose,
+  onSearchClick,
 }: {
   open: boolean;
   closing: boolean;
   onClose: () => void;
+  onSearchClick?: () => void;
 }) => {
   const { wishlistCount, cartCount } = useHeaderCounters();
   if (!open && !closing) return null;
@@ -32,6 +34,7 @@ export const HeaderDrawer = ({
             <span />
           </span>
         </button>
+
         <nav className={styles.drawerNav}>
           <Link href="/" className={styles.drawerNavLink} onClick={onClose}>
             Home
