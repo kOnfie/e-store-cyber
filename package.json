@@ -9,7 +9,12 @@
     "lint": "next lint",
     "format": "prettier --write ."
   },
-  "keywords": ["e-commerce", "nextjs", "typescript", "react"],
+  "keywords": [
+    "e-commerce",
+    "nextjs",
+    "typescript",
+    "react"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -22,6 +27,7 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "eslint": "^9.39.1",

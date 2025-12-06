@@ -37,7 +37,7 @@
 .searchForm {
   position: relative;
   flex: 1;
-  max-width: 372px;
+  max-width: 450px; // Трохи більший інпут
 }
 
 .searchInput {
@@ -66,8 +66,8 @@
   }
 
   &:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: none; // Забираємо синій бордер
+    background-color: #ebebeb;
   }
 }
 
@@ -194,7 +194,7 @@
 .headerLeft {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xl);
+  gap: 40px; // Більший відступ між логотипом і input як у Figma
 }
 
 .headerCenter {

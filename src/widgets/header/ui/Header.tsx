@@ -1,11 +1,15 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
-import { useHeaderCounters } from '../model/useHeaderCounters';
+
+import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
 import { Container } from '@/shared/ui/atoms/Container';
+
+import { useHeaderCounters } from '../model/useHeaderCounters';
+
 import styles from './Header.module.scss';
 
 export const Header = () => {
