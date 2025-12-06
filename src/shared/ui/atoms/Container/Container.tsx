@@ -1,11 +1,14 @@
-import React from 'react';
+import { ReactNode } from 'react';
+
 import styles from './Container.module.scss';
 
 interface ContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
+  size?: 'default' | 'large';
 }
 
-export const Container: React.FC<ContainerProps> = ({ children, className }) => {
-  return <div className={`${styles.container} ${className || ''}`}>{children}</div>;
+export const Container = ({ children, className, size = 'default' }: ContainerProps) => {
+  const containerClass = size === 'large' ? styles.containerLarge : styles.container;
+  return <div className={`${containerClass} ${className || ''}`}>{children}</div>;
 };

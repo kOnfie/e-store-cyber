@@ -1,0 +1,49 @@
+@use '@/styles/variables.scss' as *;
+
+.section {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  width: 100%;
+  background: #fafafa;
+  border-radius: 32px;
+  box-shadow: 0 4px 32px rgba(33, 28, 36, 0.04);
+  padding: 80px 160px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.title {
+  color: var(--Main-Black, #000);
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0.24px;
+  margin: 0;
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  justify-items: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 20px;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px 24px;
+  }
+}

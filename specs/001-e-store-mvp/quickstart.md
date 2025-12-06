@@ -1,361 +1,216 @@
-# Quickstart Guide: E-Store MVP
+# Quickstart: Widget/Feature Folder Restructuring
 
-**Feature**: E-Store MVP
-**Date**: 2025-12-05
-**Target Audience**: Developers setting up local development environment
+**Date**: 2025-12-06
+**Feature**: Restructure widget/feature folder organization
+**Estimated Time**: 15-30 minutes
 
 ## Prerequisites
 
-Before starting, ensure you have:
+Before starting this refactoring:
 
-- **Node.js** 18.x or higher ([download](https://nodejs.org/))
-- **npm** 9.x or higher (comes with Node.js) or **pnpm** 8.x
-- **Git** (for cloning repository)
-- Modern web browser (Chrome, Firefox, Safari, or Edge)
-- Code editor (VS Code recommended)
+1. ✅ All changes committed to git (clean working directory)
+2. ✅ On branch `001-e-store-mvp` or feature branch
+3. ✅ Node modules installed (`npm install`)
+4. ✅ Project builds successfully (`npm run build`)
+
+## Quick Implementation Steps
+
+### Step 1: Find All Import References (5 min)
+
+Identify all files that import from widgets to be refactored:
+
+```bash
+# Find all imports from header widget
+grep -r "from '@/widgets/header" src/
+
+# Find all imports from hero-banner widget  
+grep -r "from '@/widgets/hero-banner" src/
+```
+
+**Expected Output**: List of files importing Header or HeroBanner components.
 
 ---
 
-## Quick Start (5 minutes)
+### Step 2: Refactor Header Widget (10 min)
 
-### 1. Clone Repository
-
-```bash
-cd ~/Projects  # or your preferred directory
-git clone <repository-url> e-store
-cd e-store
-```
-
-### 2. Install Dependencies
-
-Using npm:
-```bash
-npm install
-```
-
-Or using pnpm (faster):
-```bash
-pnpm install
-```
-
-Expected dependencies:
-- next (^14.0.0)
-- react (^18.2.0)
-- @tanstack/react-query (^5.0.0)
-- zustand (^4.4.0)
-- axios (^1.6.0)
-- sass (^1.69.0)
-- typescript (^5.3.0)
-
-### 3. Run Development Server
+#### Move Main Files
 
 ```bash
-npm run dev
-# or
-pnpm dev
+# Move main component and styles to root
+git mv src/widgets/header/ui/Header.tsx src/widgets/header/Header.tsx
+git mv src/widgets/header/ui/Header.module.scss src/widgets/header/Header.module.scss
 ```
 
-Server starts at: **http://localhost:3000**
+#### Create Barrel Export
 
-### 4. Open in Browser
-
-Navigate to http://localhost:3000
-
-You should see:
-- Home page with banners, categories, and products
-- Mock product data auto-generated
-- Fully functional shopping experience
-
----
-
-## Project Structure Overview
-
-```
-e-store/
-├── src/
-│   ├── app/           # Next.js App Router pages
-│   ├── features/      # Feature modules (FSD)
-│   ├── widgets/       # Composite widgets (FSD)
-│   ├── shared/        # Shared UI & utilities (FSD)
-│   └── styles/        # Global styles
-├── public/            # Static assets (images, icons)
-├── specs/             # Feature specifications
-└── .specify/          # SpecKit configuration
-```
-
----
-
-## Development Workflow
-
-### Making Changes
-
-1. **Components**: Edit files in `src/features/`, `src/widgets/`, or `src/shared/`
-2. **Styles**: Edit corresponding `.module.scss` files
-3. **Pages**: Edit files in `src/app/`
-4. **Mock Data**: Edit `src/shared/api/mock/products.ts` and `categories.ts`
-
-Hot reload is enabled - changes appear immediately in browser.
-
-### Adding Products
-
-Edit `src/shared/api/mock/products.ts`:
+Create `src/widgets/header/index.ts`:
 
 ```typescript
-export const mockProducts: Product[] = [
-  {
-    id: '101',
-    title: 'New Product',
-    description: 'Product description...',
-    price: 299,
-    originalPrice: 399, // Optional, for discounts
-    discount: true,
-    imageUrl: '/images/products/new-product.jpg',
-    category: 'electronics',
-    availability: 'in-stock',
-    deliveryTime: '2-3 days',
-    warranty: '1 Year Warranty'
-  },
-  // ... existing products
-];
+export { Header } from './Header';
 ```
 
-### Adding Categories
+#### Update Internal Imports in Header.tsx
 
-Edit `src/shared/api/mock/categories.ts`:
+Open [src/widgets/header/Header.tsx](../../src/widgets/header/Header.tsx) and update imports of auxiliary components:
 
+**Before**:
 ```typescript
-export const mockCategories: Category[] = [
-  {
-    id: 'new-category',
-    name: 'New Category',
-    iconUrl: '/images/categories/new-category.svg'
-  },
-  // ... existing categories
-];
+import { HeaderNav } from './HeaderNav';
+import { HeaderLogo } from './HeaderLogo';
+```
+
+**After**:
+```typescript
+import { HeaderNav } from './ui/HeaderNav';
+import { HeaderLogo } from './ui/HeaderLogo';
+```
+
+#### Update Consumer Imports
+
+Update all files that import Header (from Step 1 search results):
+
+**Before**:
+```typescript
+import { Header } from '@/widgets/header/ui/Header';
+```
+
+**After**:
+```typescript
+import { Header } from '@/widgets/header';
 ```
 
 ---
 
-## Testing Features
+### Step 3: Refactor Hero Banner Widget (10 min)
 
-### Cart & Wishlist Persistence
+#### Move Main Files
 
-1. Add products to cart/wishlist
-2. Refresh page → data persists (localStorage)
-3. Close browser → reopen → data still there
-
-### Search
-
-1. Click search input in header
-2. Type product name or category (e.g., "phone")
-3. See real-time filtered results
-4. Press Escape or click X to close
-
-### Price Filtering
-
-1. Navigate to category page (click category in slider)
-2. Use price slider in left sidebar
-3. Release slider → products filter by price range
-4. Pagination resets to page 1
-
-### Promo Codes
-
-Valid test codes:
-- `SAVE5` → 5% discount
-- `WELCOME10` → 10% discount
-- `SUMMER20` → 20% discount
-
-### Bonus Cards
-
-Valid test cards:
-- `1234567890`
-- `0987654321`
-- `1111222233`
-
-Try invalid codes to see error validation.
-
-### Checkout Flow
-
-1. Add products to cart
-2. Navigate to cart page
-3. Apply promo code and/or bonus card
-4. Click "Checkout"
-5. Fill address form → Next
-6. Select delivery option → Next
-7. Fill payment details (any 16-digit card number) → Pay
-8. See success modal → auto-redirect to home
-9. Cart is cleared
-
----
-
-## Development Commands
-
-### Start Development Server
 ```bash
-npm run dev
+# Move main component, styles, and barrel export to root
+git mv src/widgets/hero-banner/ui/HeroBanner.tsx src/widgets/hero-banner/HeroBanner.tsx
+git mv src/widgets/hero-banner/ui/HeroBanner.module.scss src/widgets/hero-banner/HeroBanner.module.scss
+git mv src/widgets/hero-banner/ui/index.ts src/widgets/hero-banner/index.ts
 ```
 
-### Build for Production
+#### Delete Empty ui/ Folder
+
 ```bash
-npm run build
+# Remove empty ui directory
+rmdir src/widgets/hero-banner/ui
 ```
 
-### Start Production Server
-```bash
-npm start
+#### Update Consumer Imports
+
+Update all files that import HeroBanner (from Step 1 search results):
+
+**Before**:
+```typescript
+import { HeroBanner } from '@/widgets/hero-banner/ui/HeroBanner';
 ```
 
-### Lint Code
-```bash
-npm run lint
-```
-
-### Format Code
-```bash
-npm run format  # if Prettier script configured
+**After**:
+```typescript
+import { HeroBanner } from '@/widgets/hero-banner';
 ```
 
 ---
 
-## Browser DevTools Tips
-
-### Inspect localStorage
-```javascript
-// In browser console
-localStorage.getItem('e-store-cart')
-localStorage.getItem('e-store-wishlist')
-
-// Clear cart/wishlist
-localStorage.removeItem('e-store-cart')
-localStorage.removeItem('e-store-wishlist')
-// Then refresh page
-```
-
-### Inspect TanStack Query Cache
-Install React DevTools and TanStack Query DevTools extensions for Chrome/Firefox.
-
-Query DevTools show:
-- Cached product data
-- Query status (loading, success, error)
-- Stale time and cache invalidation
-
----
-
-## Common Issues & Solutions
-
-### Port 3000 Already in Use
+### Step 4: Verify Build (5 min)
 
 ```bash
-# Kill process on port 3000
-# macOS/Linux:
-lsof -ti:3000 | xargs kill -9
-
-# Or use different port:
-PORT=3001 npm run dev
-```
-
-### Module Not Found Errors
-
-```bash
-# Clear node_modules and reinstall
-rm -rf node_modules package-lock.json
-npm install
-```
-
-### TypeScript Errors
-
-```bash
-# Check TypeScript configuration
+# Type check
 npx tsc --noEmit
 
-# If errors persist, restart TypeScript server in VS Code:
-# Cmd+Shift+P → "TypeScript: Restart TS Server"
+# Build project
+npm run build
+
+# Run dev server (optional - manual testing)
+npm run dev
 ```
 
-### Styles Not Applying
-
-- Ensure file has `.module.scss` extension
-- Import as: `import styles from './Component.module.scss'`
-- Use as: `className={styles.className}`
-- Check for typos in class names
+**Expected**: All commands succeed with no errors.
 
 ---
 
-## VS Code Setup (Recommended)
+### Step 5: Commit Changes (2 min)
 
-### Extensions
+```bash
+# Stage all changes
+git add -A
 
-Install these VS Code extensions:
-- ES7+ React/Redux/React-Native snippets
-- Prettier - Code formatter
-- ESLint
-- SCSS Intellisense
-- Path Intellisense
+# Commit with descriptive message
+git commit -m "refactor: restructure header and hero-banner widgets to FSD pattern
 
-### Settings
+- Move Header.tsx and Header.module.scss to widget root
+- Move HeroBanner.tsx and HeroBanner.module.scss to widget root
+- Create barrel exports (index.ts) for public API
+- Update all import paths to use new structure
+- Delete empty hero-banner/ui/ directory
 
-Create `.vscode/settings.json`:
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
-}
+This improves FSD compliance by placing main components at slice root level."
 ```
+
+---
+
+## Verification Checklist
+
+After completing the refactoring, verify:
+
+- [ ] `src/widgets/header/Header.tsx` exists at root (not in ui/)
+- [ ] `src/widgets/header/Header.module.scss` exists at root (not in ui/)
+- [ ] `src/widgets/header/index.ts` exists and exports Header
+- [ ] `src/widgets/header/ui/` still exists and contains 6 auxiliary components
+- [ ] `src/widgets/hero-banner/HeroBanner.tsx` exists at root
+- [ ] `src/widgets/hero-banner/HeroBanner.module.scss` exists at root
+- [ ] `src/widgets/hero-banner/index.ts` exists and exports HeroBanner
+- [ ] `src/widgets/hero-banner/ui/` directory deleted (was empty)
+- [ ] `npm run build` succeeds
+- [ ] `npx tsc --noEmit` succeeds (no TypeScript errors)
+- [ ] All imports updated (no references to old paths like `header/ui/Header`)
+- [ ] Git history preserved (files show as renamed, not deleted/added)
+
+---
+
+## Troubleshooting
+
+### Issue: TypeScript can't find module '@/widgets/header'
+
+**Solution**: Check that `src/widgets/header/index.ts` exists and exports Header component.
+
+### Issue: Styles not loading after move
+
+**Solution**: Verify `Header.module.scss` is in the same directory as `Header.tsx` and import path is updated.
+
+### Issue: Build fails with "Cannot find module './HeaderNav'"
+
+**Solution**: Update internal imports in `Header.tsx` to reference `./ui/HeaderNav` instead of `./HeaderNav`.
+
+### Issue: Git shows files as deleted/added instead of moved
+
+**Solution**: Use `git mv` instead of manual move to preserve file history.
 
 ---
 
 ## Next Steps
 
-1. ✅ Development environment setup complete
-2. 📋 Review [spec.md](spec.md) for full feature requirements
-3. 🏗️ Review [plan.md](plan.md) for implementation architecture
-4. 📊 Review [data-model.md](data-model.md) for entity definitions
-5. 🔌 Review [contracts/](contracts/) for API interfaces
-6. ⏭️ Ready to run `/speckit.tasks` to generate task breakdown
-7. 🚀 Start implementation with `/speckit.implement`
+After completing this refactoring:
+
+1. Update project documentation to reflect new folder structure pattern
+2. Apply same pattern to all future features and widgets
+3. Consider adding ESLint rule to enforce barrel export usage
+4. Document FSD pattern in team onboarding materials
 
 ---
 
-## Getting Help
+## Time Breakdown
 
-- **Spec Questions**: Review `specs/001-e-store-mvp/spec.md`
-- **Architecture Questions**: Review `specs/001-e-store-mvp/plan.md`
-- **Constitution Rules**: Review `.specify/memory/constitution.md`
-- **Git Issues**: Check current branch with `git branch`
-- **Dependency Issues**: Delete `node_modules` and reinstall
+| Step | Estimated Time |
+|------|---------------|
+| Find import references | 5 min |
+| Refactor header widget | 10 min |
+| Refactor hero-banner widget | 10 min |
+| Verify build | 5 min |
+| Commit changes | 2 min |
+| **Total** | **~30 min** |
 
----
-
-## Production Deployment
-
-When ready to deploy:
-
-1. **Build**:
-   ```bash
-   npm run build
-   ```
-
-2. **Test production build locally**:
-   ```bash
-   npm start
-   ```
-
-3. **Deploy to hosting**:
-   - **Vercel** (recommended for Next.js): Connect GitHub repo
-   - **Netlify**: Configure build command: `npm run build`
-   - **Docker**: Use Next.js standalone output
-
-4. **Environment Variables**:
-   - No external APIs required for MVP
-   - All configuration in `shared/lib/constants/config.ts`
-
----
-
-## Summary
-
-You now have a fully functional local development environment for E-Store MVP. All features work with mock data, localStorage persistence, and realistic async behavior. Ready for implementation!
-
-**Happy coding! 🚀**
+**Actual time may vary based on number of import references to update.**

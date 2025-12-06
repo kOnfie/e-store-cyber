@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2025-12-05
 
 ## Active Technologies
+- TypeScript 5.x (strict mode enabled) + Next.js 14+ (App Router), React, SCSS Modules (001-e-store-mvp)
+- N/A (refactoring task, no data storage changes) (001-e-store-mvp)
 
 - TypeScript 5.x (strict mode enabled) + Next.js 14+ (App Router), TanStack Query v5, Zustand v4, Axios, SCSS/Sass (001-e-store-mvp)
 
@@ -22,6 +24,7 @@ npm test && npm run lint
 TypeScript 5.x (strict mode enabled): Follow standard conventions
 
 ## Recent Changes
+- 001-e-store-mvp: Added TypeScript 5.x (strict mode enabled) + Next.js 14+ (App Router), React, SCSS Modules
 
 - 001-e-store-mvp: Added TypeScript 5.x (strict mode enabled) + Next.js 14+ (App Router), TanStack Query v5, Zustand v4, Axios, SCSS/Sass
 

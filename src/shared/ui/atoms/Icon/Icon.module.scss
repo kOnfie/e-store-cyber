@@ -1,0 +1,12 @@
+@use '@/styles/variables.scss' as *;
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+
+  img {
+    display: block;
+  }
+}

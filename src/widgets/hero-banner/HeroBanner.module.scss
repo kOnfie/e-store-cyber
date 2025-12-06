@@ -1,0 +1,266 @@
+@use '@/styles/variables.scss' as *;
+
+.heroBanner {
+  width: 100%;
+  background: linear-gradient(95deg, rgba(33, 28, 36, 1) 0%, rgba(33, 28, 36, 1) 100%);
+  padding: 88px 0 0 0;
+  overflow: hidden;
+}
+
+.bannerContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 213px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 1.28em;
+  color: #ffffff;
+  opacity: 0.4;
+  margin: 0;
+}
+
+.title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 100;
+  font-size: 96px;
+  font-style: normal;
+  line-height: 72px;
+  letter-spacing: -0.96px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.titleBold {
+  font-weight: 600;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33em;
+  color: #909090;
+  margin: 0;
+}
+
+.ctaButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 56px;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5em;
+  text-align: center;
+  color: #ffffff;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+}
+
+.image {
+  width: auto;
+  height: auto;
+  max-width: 406px;
+  max-height: 632px;
+}
+
+// Responsive
+@media (max-width: $breakpoint-xl) {
+  .heroBanner {
+    padding: 60px 0 0 0;
+  }
+
+  .bannerContent {
+    gap: 100px;
+  }
+
+  .title {
+    font-size: 72px;
+    line-height: 54px;
+    letter-spacing: -0.72px;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .heroBanner {
+    padding: 40px 0 0 0;
+  }
+
+  .bannerContent {
+    gap: 60px;
+  }
+
+  .title {
+    font-size: 56px;
+    line-height: 42px;
+    letter-spacing: -0.56px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .imageWrapper {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .heroBanner {
+    padding: 40px 0 0 0;
+  }
+
+  .bannerContent {
+    flex-direction: column-reverse;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .content {
+    align-items: center;
+  }
+
+  .title {
+    font-size: 48px;
+    line-height: 36px;
+    letter-spacing: -0.48px;
+  }
+
+  .ctaButton {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .imageWrapper {
+    display: none;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .title {
+    font-size: 36px;
+    line-height: 27px;
+    letter-spacing: -0.36px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-xl) {
+  .heroBanner {
+    padding: 0 80px;
+    gap: 100px;
+  }
+
+  .title {
+    font-size: 72px;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .heroBanner {
+    padding: 0 40px;
+    gap: 60px;
+  }
+
+  .title {
+    font-size: 56px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .imageWrapper {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .heroBanner {
+    flex-direction: column-reverse;
+    padding: 40px 20px;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .content {
+    align-items: center;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .ctaButton {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .imageWrapper {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
