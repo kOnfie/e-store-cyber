@@ -1,13 +1,8 @@
+import type { Product } from '@/shared/types/product';
+
 import { ProductCard } from '../product-card/ProductCard';
 
 import styles from './ProductList.module.scss';
-
-export interface Product {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-}
 
 interface ProductListProps {
   products: Product[];

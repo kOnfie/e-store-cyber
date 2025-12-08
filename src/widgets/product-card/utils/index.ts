@@ -1,0 +1,1 @@
+export { generateProductUrl } from './generateProductUrl';
