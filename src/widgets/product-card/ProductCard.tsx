@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Button } from '@/shared/ui/atoms';
+
 import { generateProductUrl } from './utils';
 
 import styles from './ProductCard.module.scss';
@@ -45,9 +47,15 @@ export const ProductCard = ({
               <span className={styles.price}>${price}</span>
             </div>
           </div>
-          <button className={styles.buyButton} onClick={handleBuyClick}>
+          <Button
+            variant="primary"
+            size="small"
+            fullWidth
+            onClick={handleBuyClick}
+            className={styles.button}
+          >
             Buy Now
-          </button>
+          </Button>
         </div>
       </div>
     </Link>

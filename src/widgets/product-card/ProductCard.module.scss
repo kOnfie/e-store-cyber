@@ -89,27 +89,7 @@
   letter-spacing: 0.03em;
 }
 
-.buyButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 50px;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-family: Inter, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.71;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  width: fit-content;
+// Button styles now handled by shared Button component
+.button {
   margin-top: 24px;
-
-  &:hover {
-    background: #333;
-  }
 }

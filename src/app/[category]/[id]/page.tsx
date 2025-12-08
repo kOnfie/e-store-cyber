@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import { useProduct } from '@/shared/hooks/useProducts';
-import { Container } from '@/shared/ui/atoms/Container';
+import { Button, Container } from '@/shared/ui/atoms';
 
 import styles from './page.module.scss';
 
@@ -90,8 +90,12 @@ export default function ProductPage({ params }: ProductPageProps) {
             </div>
 
             <div className={styles.actions}>
-              <button className={styles.addToCartButton}>Add to Cart</button>
-              <button className={styles.wishlistButton}>Add to Wishlist</button>
+              <Button variant="primary" fullWidth>
+                Add to Cart
+              </Button>
+              <Button variant="secondary" fullWidth>
+                Add to Wishlist
+              </Button>
             </div>
           </div>
         </div>
